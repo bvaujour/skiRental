@@ -45,9 +45,9 @@ function	cleanContainers()
 
 async function confirmReservation()
 {
-	await fetch(`/api/reserve/skis/${selection['ski'].item.id}`, { method: "POST" });
-	await fetch(`/api/reserve/chaussures/${selection['boot'].item.id}`, { method: "POST" });
-	await fetch(`/api/reserve/batons/${selection['stick'].item.id}`, { method: "POST" });
+	await fetch(`/api/reserve/ski/${selection['ski'].item.id}`, { method: "POST" });
+	await fetch(`/api/reserve/boot/${selection['boot'].item.id}`, { method: "POST" });
+	await fetch(`/api/reserve/stick/${selection['stick'].item.id}`, { method: "POST" });
 	location.reload();
 }
 
@@ -135,9 +135,12 @@ function render()
 
 async function loadCatalog()
 {
-	skis = await fetch("/api/skis").then(r => r.json());
-	boots = await fetch("/api/chaussures").then(r => r.json());
-	sticks = await fetch("/api/batons").then(r => r.json());
+	skis = await fetch("/api/ski").then(r => r.json());
+	boots = await fetch("/api/boot").then(r => r.json());
+	sticks = await fetch("/api/stick").then(r => r.json());
+	console.log(skis);
+	console.log(boots);
+	console.log(sticks);
 	for (const ski of skis)
 		ski.sizes = ski.sizes.split(',');
 	for (const boot of boots)
